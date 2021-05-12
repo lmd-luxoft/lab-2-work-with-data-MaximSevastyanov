@@ -6,24 +6,52 @@ using System.Threading.Tasks;
 
 namespace Monopoly
 {
+    class Player
+    {
+        private string playerName;
+        private int playerCash;
+
+        public Player(string playerName, int playerCash)
+        {
+            this.playerName = playerName;
+            this.playerCash = playerCash;
+        }
+    }
+
+    class Item
+    {
+        private string itemName;
+        private Monopoly.Type itemType;
+        private int itemCost;
+        private bool isAvailable;
+
+        public Item(string itemName, Monopoly.Type itemType, int itemCost, bool isAvailable)
+        {
+            this.itemName = itemName;
+            this.itemType = itemType;
+            this.itemCost = itemCost;
+            this.isAvailable = isAvailable;
+        }
+    }
+
     class Monopoly
     {
-        public List<Tuple<string, int>> players = new List<Tuple<string, int>>();
-        public List<Tuple<string, Monopoly.Type, int, bool>> fields = new List<Tuple<string, Type, int, bool>>();
+        public List<Player> players = new List<Player>();
+        public List<Item> items = new List<Item>();
         public Monopoly(string[] p, int v)
         {
             for (int i = 0; i < v; i++)
             {
-                players.Add(new Tuple<string,int>(p[i], 6000));     
+                players.Add(new Player(p[i], 6000));     
             }
-            fields.Add(new Tuple<string, Monopoly.Type, int, bool>("Ford", Monopoly.Type.AUTO, 0, false));
-            fields.Add(new Tuple<string, Monopoly.Type, int, bool>("MCDonald", Monopoly.Type.FOOD, 0, false));
-            fields.Add(new Tuple<string, Monopoly.Type, int, bool>("Lamoda", Monopoly.Type.CLOTHER, 0, false));
-            fields.Add(new Tuple<string, Monopoly.Type, int, bool>("Air Baltic", Monopoly.Type.TRAVEL, 0, false));
-            fields.Add(new Tuple<string, Monopoly.Type, int, bool>("Nordavia", Monopoly.Type.TRAVEL, 0, false));
-            fields.Add(new Tuple<string, Monopoly.Type, int, bool>("Prison", Monopoly.Type.PRISON, 0, false));
-            fields.Add(new Tuple<string, Monopoly.Type, int, bool>("MCDonald", Monopoly.Type.FOOD, 0, false));
-            fields.Add(new Tuple<string, Monopoly.Type, int, bool>("TESLA", Monopoly.Type.AUTO, 0, false));
+            items.Add(new Item("Ford", Monopoly.Type.AUTO, 500, false));
+            items.Add(new Item("MCDonald", Monopoly.Type.FOOD, 250, false));
+            items.Add(new Item("Lamoda", Monopoly.Type.CLOTHER, 100, false));
+            items.Add(new Item("Air Baltic", Monopoly.Type.TRAVEL, 700, false));
+            items.Add(new Item("Nordavia", Monopoly.Type.TRAVEL, 0, false));
+            items.Add(new Item("Prison", Monopoly.Type.PRISON, 0, false));
+            items.Add(new Item("MCDonald", Monopoly.Type.FOOD, 0, false));
+            items.Add(new Item("TESLA", Monopoly.Type.AUTO, 0, false));
         }
 
         internal List<Tuple<string, int>> GetPlayersList()
